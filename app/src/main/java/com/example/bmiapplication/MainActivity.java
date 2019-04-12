@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText txtWeight, txtHeight;
     TextView lblResult;
 
-    float weight,height,bmi;
+    float weight, height, bmi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,43 +33,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-//    private  void bmiCalculation(){
-//        weight = Float.parseFloat(txtWeight.getText().toString());
-//        height = Float.parseFloat(txtHeight.getText().toString());
-//        System.out.println("Height: "+height +"weight: "+weight);
-//        bmi = weight /(height * height);
-//        lblResult.setText("BMI :[ "+bmi+" ]\n");
-//    }
-public void calculateBMI() {
-    String heightStr = txtHeight.getText().toString();
-    String weightStr = txtWeight.getText().toString();
+    public void calculateBMI() {
+        String heightStr = txtHeight.getText().toString();
+        String weightStr = txtWeight.getText().toString();
 
-    if (heightStr != null && !"".equals(heightStr)
-            && weightStr != null  &&  !"".equals(weightStr)) {
-        float heightValue = Float.parseFloat(heightStr)/100;
-        float weightValue = Float.parseFloat(weightStr);
+        if (heightStr != null && !"".equals(heightStr)
+                && weightStr != null && !"".equals(weightStr)) {
+            float heightValue = Float.parseFloat(heightStr) / 100;
+            float weightValue = Float.parseFloat(weightStr);
 
-        float bmi = (weightValue / (heightValue * heightValue));
+            float bmi = (weightValue / (heightValue * heightValue));
 
-        lblResult.setText("BMI :[ "+bmi+" ]\n");
-        displayBMI();
+            lblResult.setText("BMI :[ " + bmi + " ]\n");
+            displayBMI();
+        }
     }
-}
 
-    public void displayBMI(){
-        BMICategory  bmic = new BMICategory();
+    public void displayBMI() {
+        BMICategory bmic = new BMICategory();
         lblResult.append(bmic.getCategory(bmi));
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnConvert:
-            calculateBMI();
-//            displayBMI();
+                calculateBMI();
                 break;
-                default:
-                    break;
+            case R.id.btnClose:
+                finish();
+                break;
+            default:
+                break;
         }
 
     }
